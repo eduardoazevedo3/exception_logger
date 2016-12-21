@@ -54,7 +54,7 @@ module ExceptionLogger
       super
     end
 
-    def filter_sub_parameters(params, rails_filter_parameters)
+    def filter_sub_parameters(params, rails_filter_parameters = nil)
       params.each do |key, value|
         if(value.class != Hash and value.class != ActiveSupport::HashWithIndifferentAccess)
           params[key] = '[FILTERED]' if rails_filter_parameters.include?(key.to_sym)
