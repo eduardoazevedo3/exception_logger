@@ -74,7 +74,7 @@ module ExceptionLogger
 
     def clear
       LoggedException.delete_all
-      redirect_to :back
+      redirect_back fallback_location: request.referer
     end
 
     private
