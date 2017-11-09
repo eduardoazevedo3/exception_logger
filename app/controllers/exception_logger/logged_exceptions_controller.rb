@@ -68,7 +68,7 @@ module ExceptionLogger
     end
 
     def destroy_all
-      LoggedException.where(:id => params[:id]).delete_all unless params[:ids].blank?
+      LoggedException.where(:id => params[:ids]).delete_all unless params[:ids].blank?
       query
     end
 
