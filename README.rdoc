@@ -8,10 +8,10 @@ mount to any existing rails app.
 Inside your Gemfile:
 
   # Rails 4.1.x
-  gem "exception_logger", :github => "ryancheung/exception_logger"
+  gem 'exception_logger', github: 'ryancheung/exception_logger'
 
   # Rails 4.0.x
-  gem "exception_logger", :github => "ryancheung/exception_logger", tag: 'v0.1.0'
+  gem 'exception_logger', github: 'ryancheung/exception_logger', tag: 'v0.1.0'
 
 and then run:
 
@@ -27,7 +27,7 @@ Please check if all those requirements are satisfied on your environment.
 === Inside your ApplicationController:
 
   include ExceptionLogger::ExceptionLoggable # loades the module
-  rescue_from Exception, :with => :log_exception_handler # tells rails to forward the 'Exception' (you can change the type) to the handler of the module
+  rescue_from Exception, with: :log_exception_handler # tells rails to forward the 'Exception' (you can change the type) to the handler of the module
 
 === Inside your config/routes.rb
 
@@ -71,7 +71,7 @@ in config/environment/production.rb:
 and (if you use declarative_authorization) add this to your authorization_rules.rb file:
 
   role :admin do
-    has_permission_on :logged_exceptions, :to => :manage
+    has_permission_on :logged_exceptions, to: :manage
     ...
 
 == Testing & Development
