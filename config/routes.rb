@@ -1,5 +1,4 @@
 ExceptionLogger::Engine.routes.draw do
-  # Exception Logger
   resources :logged_exceptions do
     collection do
       post :clear
@@ -8,6 +7,5 @@ ExceptionLogger::Engine.routes.draw do
       get :feed
     end
   end
-
-  root :to => 'logged_exceptions#index'
+  root to: 'logged_exceptions#index'
 end
