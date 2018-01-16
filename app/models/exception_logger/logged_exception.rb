@@ -7,12 +7,12 @@ module ExceptionLogger
         message = exception.message.inspect
         message << "\n* Extra Data\n\n#{data}" unless data.blank?
         e = create! \
-          :exception_class => exception.class.name,
-          :controller_name => controller.controller_path,
-          :action_name     => controller.action_name,
-          :message         => message,
-          :backtrace       => exception.backtrace,
-          :request         => controller.request
+          exception_class: exception.class.name,
+          controller_name: controller.controller_path,
+          action_name:     controller.action_name,
+          message:         message,
+          backtrace:       exception.backtrace,
+          request:         controller.request
       end
 
       def host_name
@@ -20,10 +20,10 @@ module ExceptionLogger
       end
     end
 
-    scope :by_exception_class, lambda {|exception_class| where(:exception_class => exception_class)}
-    scope :by_controller_and_action, lambda {|controller_name, action_name| where(:controller_name => controller_name, :action_name => action_name)}
-    scope :by_controller, lambda {|controller_name| where(:controller_name => controller_name)}
-    scope :by_action, lambda {|action_name| where(:action_name => action_name)}
+    scope :by_exception_class, lambda {|exception_class| where(exception_class: exception_class)}
+    scope :by_controller_and_action, lambda {|controller_name, action_name| where(controller_name: controller_name, action_name: action_name)}
+    scope :by_controller, lambda {|controller_name| where(controller_name: controller_name)}
+    scope :by_action, lambda {|action_name| where(action_name: action_name)}
     scope :message_like, lambda {|query|  where('message like ?', "%#{query}%")}
     scope :days_old, lambda {|day_number| where('created_at >= ?', day_number.to_f.days.ago.utc)}
     scope :sorted, lambda { order('created_at DESC') }
