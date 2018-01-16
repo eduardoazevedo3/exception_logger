@@ -75,7 +75,7 @@ module ExceptionLogger
 
       rails_filter_parameters = defined?(::Rails) ? ::Rails.application.config.filter_parameters : []
 
-      self.request.parameters.each do |key, value|
+      request.parameters.each do |key, value|
         if(value.class != Hash && value.class != ActiveSupport::HashWithIndifferentAccess)
           self.request.parameters[key] = '[FILTERED]' if rails_filter_parameters.include?(key.to_sym)
         else
