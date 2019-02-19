@@ -233,7 +233,7 @@ tr.deleted td {
 }
 tr.deleted td a { color:#aaa; }
 
-.pages { float:right; margin-right:1em; margin-top: -12px; }
+.pages { float:right; margin-right:1em; }
 .pages a { text-decoration:underline; }
 .pages-bottom { border-top:2px solid #ddd; text-align:right; float:none;
   padding-top:0.4em;
@@ -241,9 +241,9 @@ tr.deleted td a { color:#aaa; }
   padding-right:1em;
   margin-right:0;
 }
-.pages nav { display: inline-block; }
-.pagination { display: inline-block; list-style: none; padding: 0; }
-.pagination > .page-item { display: inline-block; }
+.pages nav { display: inline; }
+.pagination { display: inline; list-style: none; padding: 0; }
+.pagination > .page-item { display: inline; }
 
 /* right */
 
