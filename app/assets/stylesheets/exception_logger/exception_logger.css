@@ -233,7 +233,7 @@ tr.deleted td {
 }
 tr.deleted td a { color:#aaa; }
 
-.pages { float:right; margin-right:1em; }
+.pages { float:right; margin-right:1em; margin-top: -12px; }
 .pages a { text-decoration:underline; }
 .pages-bottom { border-top:2px solid #ddd; text-align:right; float:none;
   padding-top:0.4em;
