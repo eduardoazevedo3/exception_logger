@@ -17,7 +17,7 @@ body
 #left
 {
   margin-right:235px;
-  
+
 }
 
 #left .page
@@ -240,7 +240,10 @@ tr.deleted td a { color:#aaa; }
   margin-top:0.4em;
   padding-right:1em;
   margin-right:0;
-  }
+}
+.pages nav { display: inline-block; }
+.pagination { display: inline-block; list-style: none; padding: 0; }
+.pagination > .page-item { display: inline-block; }
 
 /* right */
 
