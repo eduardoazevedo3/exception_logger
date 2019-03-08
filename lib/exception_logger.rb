@@ -44,7 +44,8 @@ module ExceptionLogger
 
     # we log the exception and raise it again, for the normal handling.
     def log_exception_handler(exception)
-      log_exception(exception)
+      status = response_code_for_rescue(exception)
+      log_exception(exception, status.to_s) if %i[not_found not_acceptable unprocessable_entity].exclude?(status)
       raise exception
     end
 
