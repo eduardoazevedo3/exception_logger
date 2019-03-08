@@ -50,7 +50,7 @@ module ExceptionLogger
 
     def rescue_action(exception)
       status = response_code_for_rescue(exception)
-      log_exception(exception) if status != :not_found
+      log_exception(exception) if %i[not_found not_acceptable unprocessable_entity].exclude?(status)
       super
     end
 
