@@ -5,7 +5,7 @@ module ExceptionLogger
     class << self
       def create_from_exception(controller, exception, data)
         message = exception.message.inspect
-        message << "\n* Extra Data\n\n#{data}" unless data.blank?
+        message << "\n* Extra Data\n#{data}" unless data.blank?
         if exception.class.name != 'ActiveRecord::RecordNotFound'
           e = create!(
             exception_class: exception.class.name,
