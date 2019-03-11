@@ -12,12 +12,22 @@
 <h2>Request</h2>
 <%= pretty_format(@exception.request) %>
 
-<h2>Backtrace</h2>
-<%= simple_format @exception.message %>
+<h2>Exception Message</h2>
+<pre><%= simple_format @exception.message.gsub(/\\n/,"<br />") %></pre>
 
-<div id="backtrace">
+<h2>Backtrace</h2>
+<pre id="backtrace">
   <%= raw @exception.backtrace.gsub(/\n/,"<br />") %>
-</div>
+</pre>
 
 <h2>Environment</h2>
-<%= pretty_format(@exception.environment) %>
+<pre><%= simple_format(@exception.environment) %></pre>
+
+<style>
+  pre {
+    overflow: scroll;
+    background: #fff;
+    border: 3px solid #e4e4e4;
+    padding: 20px;
+  }
+</style>
