@@ -44,7 +44,8 @@ module ExceptionLogger
 
     # we log the exception and raise it again, for the normal handling.
     def log_exception_handler(exception)
-      log_exception(exception)
+      ignore_classes = ['ActionController::UnknownFormat']
+      log_exception(exception) if ignore_classes.exclude?(exception.class.name)
       raise exception
     end
 
