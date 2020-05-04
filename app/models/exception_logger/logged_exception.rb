@@ -15,6 +15,7 @@ module ExceptionLogger
             backtrace:       exception.backtrace,
             request:         controller.request
           )
+          webhook_discord(controller, exception, data, message)
         else
           self
         end
@@ -22,6 +23,44 @@ module ExceptionLogger
 
       def host_name
         HOSTNAME
+      end
+
+      def webhook_discord(controller, exception, data, message)
+        return false unless ENV['LOG_URL'].present?
+        payload = {
+          "embeds": [
+            {
+              "Exception": exception.class.name,
+              "url": ENV['LOG_URL'],
+              "color": 15542585,
+              "title": "Error",
+              "fields": [
+                {
+                  "name": "Controller",
+                  "value": controller.controller_path,
+                  "inline": true
+                },
+                {
+                  "name": "Method",
+                  "value": controller.action_name,
+                  "inline": true
+                },
+                {
+                  "name": "Message",
+                  "value": message
+                },
+                {
+                  "name": "Backtrace",
+                  "value": exception.backtrace.to_s.truncate(600)
+                }
+              ]
+            }
+          ]
+        }
+        RestClient.post(ENV['WEBHOOK_DISCORD'], payload.to_json, content_type: :json) if ENV['WEBHOOK_DISCORD'].present?
+
+      rescue
+        true
       end
     end
 
