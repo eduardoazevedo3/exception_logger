@@ -19,3 +19,4 @@ gem "jquery-rails"
 gem 'pry', require: false
 gem 'pry-debugger'
 gem 'pry-rails'
+gem 'rest-client'
