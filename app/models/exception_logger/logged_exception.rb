@@ -26,7 +26,8 @@ module ExceptionLogger
       end
 
       def webhook_discord(controller, exception, data, message)
-        return false unless ENV['LOG_URL'].present?
+        return unless ENV['LOG_URL'].present?
+        return unless ENV['WEBHOOK_DISCORD'].present?
         payload = {
           "embeds": [
             {
@@ -57,8 +58,7 @@ module ExceptionLogger
             }
           ]
         }
-        RestClient.post(ENV['WEBHOOK_DISCORD'], payload.to_json, content_type: :json) if ENV['WEBHOOK_DISCORD'].present?
-
+        RestClient.post(ENV['WEBHOOK_DISCORD'], payload.to_json, content_type: :json)
       rescue
         true
       end
